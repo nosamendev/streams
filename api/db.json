@@ -1,0 +1,31 @@
+{
+  "streams": [
+    {
+      "title": "erere",
+      "description": "erererergggg",
+      "id": 1
+    },
+    {
+      "title": "other stream",
+      "description": "here is some stream",
+      "id": 2
+    },
+    {
+      "title": "I created this stream1",
+      "description": "This was made by me1",
+      "id": 3
+    },
+    {
+      "title": "programmatic navigation",
+      "description": "you should not see this",
+      "userId": "107656131650494554616",
+      "id": 5
+    },
+    {
+      "title": "Me streaming component reuse",
+      "description": "Watchme refactor some components",
+      "userId": "107656131650494554616",
+      "id": 6
+    }
+  ]
+}
