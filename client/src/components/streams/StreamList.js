@@ -1,7 +1,11 @@
+//components/streams/StreamList.js
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchStreams } from '../../actions';
+import history from '../../history';
+import Modal from '../Modal';
 
 class StreamList extends React.Component {
     componentDidMount(){
@@ -18,6 +22,7 @@ class StreamList extends React.Component {
                     <Link to={`/streams/delete/${stream.id}`} className="ui button negative">
                         Delete
                     </Link>
+                    <button onClick={() => {this.renderModal(stream)}}>Delete</button>
                 </div>
             );
         }
@@ -53,6 +58,20 @@ class StreamList extends React.Component {
             )
         }
     }
+    
+    renderModal(stream){
+        //console.log(stream.id);
+        const id=stream.id;
+        const content = (!this.props.stream)?
+            'Are you sure you want to delete this stream':
+            `Are you sure you want to delete this stream with Title ${this.props.stream.title}`;
+        const actions = (<div>
+            <button onClick={() => {this.props.deleteStream(id)}}>Delete</button>
+            <Link to="/">Cancel</Link>
+        </div>);
+        
+        return <Modal title="Delete Stream" content={content} actions={actions} onDismiss={() => {history.push('/')}} />;
+    }
 
     render(){
         //console.log(this.props.streams);
@@ -78,6 +97,5 @@ const mapStateToProps = (state) => {
     
 }
 
-
-
 export default connect(mapStateToProps,{ fetchStreams })(StreamList);
+
