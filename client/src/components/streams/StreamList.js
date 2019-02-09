@@ -3,7 +3,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchStreams } from '../../actions';
+import { fetchStreams, deleteStream } from '../../actions';
 import history from '../../history';
 import Modal from '../Modal';
 
@@ -62,9 +62,10 @@ class StreamList extends React.Component {
     renderModal(stream){
         //console.log(stream.id);
         const id=stream.id;
-        const content = (!this.props.stream)?
+        const content = (!stream)?
             'Are you sure you want to delete this stream':
-            `Are you sure you want to delete this stream with Title ${this.props.stream.title}`;
+            `Are you sure you want to delete this stream with Title ${stream.title}`;
+            console.log(content);
         const actions = (<div>
             <button onClick={() => {this.props.deleteStream(id)}}>Delete</button>
             <Link to="/">Cancel</Link>
@@ -97,5 +98,5 @@ const mapStateToProps = (state) => {
     
 }
 
-export default connect(mapStateToProps,{ fetchStreams })(StreamList);
+export default connect(mapStateToProps,{ fetchStreams, deleteStream })(StreamList);
 
